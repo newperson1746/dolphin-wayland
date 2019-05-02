@@ -34,6 +34,10 @@ struct WindowSystemInfo
   // set to nullptr, the video backend will run in headless mode.
   void* render_surface = nullptr;
 
+  // Dimensions of the render surface, if this is determined by the frontend.
+  int render_surface_width = 0;
+  int render_surface_height = 0;
+
   // Scale of the render surface. For hidpi systems, this will be >1.
   float render_surface_scale = 1.0f;
 };
