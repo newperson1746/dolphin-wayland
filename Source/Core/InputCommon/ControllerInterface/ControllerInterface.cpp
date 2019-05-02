@@ -14,6 +14,9 @@
 #ifdef CIFACE_USE_XLIB
 #include "InputCommon/ControllerInterface/Xlib/XInput2.h"
 #endif
+#ifdef CIFACE_USE_WAYLAND
+#include "InputCommon/ControllerInterface/Wayland/Wayland.h"
+#endif
 #ifdef CIFACE_USE_OSX
 #include "InputCommon/ControllerInterface/OSX/OSX.h"
 #include "InputCommon/ControllerInterface/Quartz/Quartz.h"
@@ -52,6 +55,9 @@ void ControllerInterface::Initialize(const WindowSystemInfo& wsi)
   ciface::Win32::Init(wsi.render_surface);
 #endif
 #ifdef CIFACE_USE_XLIB
+// nothing needed
+#endif
+#ifdef CIFACE_USE_WAYLAND
 // nothing needed
 #endif
 #ifdef CIFACE_USE_OSX
@@ -108,6 +114,10 @@ void ControllerInterface::RefreshDevices()
 #ifdef CIFACE_USE_XLIB
   if (m_wsi.type == WindowSystemType::X11)
     ciface::XInput2::PopulateDevices(m_wsi.render_surface);
+#endif
+#ifdef CIFACE_USE_WAYLAND
+  if (m_wsi.type == WindowSystemType::Wayland)
+    ciface::Wayland::PopulateDevices(m_wsi);
 #endif
 #ifdef CIFACE_USE_OSX
   if (m_wsi.type == WindowSystemType::MacOS)
@@ -166,6 +176,9 @@ void ControllerInterface::Shutdown()
   ciface::Win32::DeInit();
 #endif
 #ifdef CIFACE_USE_XLIB
+// nothing needed
+#endif
+#ifdef CIFACE_USE_WAYLAND
 // nothing needed
 #endif
 #ifdef CIFACE_USE_OSX

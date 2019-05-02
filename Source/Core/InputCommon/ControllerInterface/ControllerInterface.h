@@ -30,6 +30,9 @@
 #define CIFACE_USE_PIPES
 #endif
 #define CIFACE_USE_DUALSHOCKUDPCLIENT
+#if defined(HAVE_WAYLAND)
+#define CIFACE_USE_WAYLAND
+#endif
 
 //
 // ControllerInterface
