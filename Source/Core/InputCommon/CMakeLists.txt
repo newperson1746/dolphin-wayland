@@ -106,7 +106,6 @@ elseif(APPLE)
     ${FORCEFEEDBACK_LIBRARY}
     ${IOK_LIBRARY}
   )
-<<<<<<< HEAD
 elseif(X11_FOUND)
   target_sources(inputcommon PRIVATE
     ControllerInterface/Xlib/XInput2.cpp

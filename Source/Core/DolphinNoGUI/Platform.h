@@ -38,6 +38,9 @@ public:
 #ifdef __linux__
   static std::unique_ptr<Platform> CreateFBDevPlatform();
 #endif
+#ifdef HAVE_WAYLAND
+  static std::unique_ptr<Platform> CreateWaylandPlatform();
+#endif
 
 protected:
   void UpdateRunningFlag();

@@ -111,6 +111,11 @@ static std::unique_ptr<Platform> GetPlatform(const optparse::Values& options)
 {
   std::string platform_name = static_cast<const char*>(options.get("platform"));
 
+#if HAVE_WAYLAND
+  if (platform_name == "wayland")
+    return Platform::CreateWaylandPlatform();
+#endif
+
 #if HAVE_X11
   if (platform_name == "x11" || platform_name.empty())
     return Platform::CreateX11Platform();
@@ -142,6 +147,10 @@ int main(int argc, char* argv[])
 #if HAVE_X11
             ,
             "x11"
+#endif
+#ifdef HAVE_WAYLAND
+            ,
+            "wayland"
 #endif
       });
 
