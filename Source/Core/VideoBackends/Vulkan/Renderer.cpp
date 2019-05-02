@@ -305,7 +305,7 @@ void Renderer::BindBackbuffer(const ClearColor& clear_color)
     }
     else if (res == VK_SUBOPTIMAL_KHR || res == VK_ERROR_OUT_OF_DATE_KHR)
     {
-      m_swap_chain->ResizeSwapChain();
+      m_swap_chain->ResizeSwapChain(m_backbuffer_width, m_backbuffer_height);
     }
     else
     {
@@ -383,8 +383,11 @@ void Renderer::CheckForSurfaceChange()
   g_command_buffer_mgr->CheckLastPresentFail();
 
   // Recreate the surface. If this fails we're in trouble.
-  if (!m_swap_chain->RecreateSurface(m_new_surface_handle))
+  if (!m_swap_chain->RecreateSurface(m_new_surface_handle, m_new_surface_width,
+                                     m_new_surface_height))
+  {
     PanicAlert("Failed to recreate Vulkan surface. Cannot continue.");
+  }
   m_new_surface_handle = nullptr;
 
   // Handle case where the dimensions are now different.
@@ -411,7 +414,7 @@ void Renderer::CheckForSurfaceResize()
   g_command_buffer_mgr->CheckLastPresentFail();
 
   // Resize the swap chain.
-  m_swap_chain->RecreateSwapChain();
+  m_swap_chain->ResizeSwapChain(m_new_surface_width, m_new_surface_height);
   OnSwapChainResized();
 }
 
