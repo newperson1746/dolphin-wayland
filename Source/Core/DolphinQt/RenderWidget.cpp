@@ -7,6 +7,7 @@
 #include <array>
 
 #include <QApplication>
+#include <QDesktopWidget>
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QFileInfo>

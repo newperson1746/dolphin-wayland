@@ -26,7 +26,7 @@ namespace Vulkan
 SwapChain::SwapChain(const WindowSystemInfo& wsi, VkSurfaceKHR surface, bool vsync)
     : m_wsi(wsi), m_surface(surface), m_vsync_enabled(vsync), m_width(wsi.render_surface_width),
       m_height(wsi.render_surface_height),
-      m_fullscreen_supported(g_vulkan_context->SupportsExclusiveFullscreen(wsi, surface)
+      m_fullscreen_supported(g_vulkan_context->SupportsExclusiveFullscreen(wsi, surface))
 {
 }
 
