@@ -2,7 +2,9 @@
 TO DO: ADD DEPS INSTALL COMMAND
 
 mkdir build
+
 cd build
+
 cmake .. -DENABLE_PULSEAUDIO=YES -DENABLE_WAYLAND=YES
 
 # Dolphin - A GameCube and Wii Emulator
